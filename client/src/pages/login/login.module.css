@@ -1,99 +1,98 @@
 .mainDiv {
-    /* border: 1px solid red; */
-    width: 40%;
-    text-align: left;
-    justify-content: center;
-    align-items: center;
-    font-family: "Inter";
-    margin: 2rem auto;
-  }
-  .form1 {
-    justify-content: center;
-    align-items: center;
-    margin: 0 5%;
-  }
+  /* border: 1px solid red; */
+  width: 40%;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter";
+  margin: 2rem auto;
+}
+.form1 {
+  justify-content: center;
+  align-items: center;
+  margin: 0 5%;
+}
+.form1 > div {
+  font-family: "Inter";
+  width: 65%;
+  margin: 0 auto;
+}
+.forgotPasswordDiv {
+  /* border: 1px solid black; */
+  color: #654de4;
+  display: block;
+  padding-bottom: 2.5%;
+  text-align: center;
+  margin: auto;
+}
+.forgotPasswordPTag {
+  margin: auto;
+}
+.newUserSignupLinkDiv {
+  margin: 2% auto;
+  text-align: center;
+  font-size: 13px;
+}
+.newUserSignupLinkDiv > p {
+  margin: 2% auto;
+}
+.signupLink {
+  color: #654de4;
+  font-size: 16px;
+}
+.googleLoginDiv > button {
+  width: 100%;
+  background-color: white;
+  border: 1.5px solid whitesmoke;
+  border-radius: 5px;
+}
+.googleLoginDiv > button > div {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  text-justify: auto;
+  padding: 5px;
+}
+.googleLoginDiv > button > div > img {
+  width: 8%;
+  margin: auto;
+  /* border:1px solid rgb(168, 62, 62); */
+}
+.googleLoginDiv > button > div > p {
+  font-size: 16px;
+  margin: auto;
+  /* border:1px solid rgb(202, 28, 28); */
+}
+#btn {
+  width: 100%;
+  background-color: #654de4;
+  color: #fff;
+  font: "Inter";
+}
+#urlLabel {
+  margin-left: 17%;
+}
+.optSpan {
+  color: grey;
+}
+
+@media all and (max-width: 320px) {
   .form1 > div {
     font-family: "Inter";
-    width: 65%;
+    width: 98%;
     margin: 0 auto;
   }
-  .forgotPasswordDiv{
-    /* border: 1px solid black; */
-      color: #654de4;
-      display: block;
-      padding-bottom: 2.5%;
-      text-align: center;
-      margin:auto;
+  #urlLabel {
+    margin-left: 6%;
   }
-  .forgotPasswordPTag{
-    margin:auto;
-  }
-  .newUserSignupLinkDiv{
-    margin: 2% auto;
-    text-align: center;
-    font-size: 13px;
-  }
-  .newUserSignupLinkDiv>p{
-    margin: 2% auto;
-  }
-  .signupLink{
-    color: #654de4;
-    font-size: 16px;
-  }
-  .googleLoginDiv>button{
-    width: 100%;
-    background-color:white;
-    border:1.5px solid whitesmoke;
-    border-radius:5px;
 }
-  .googleLoginDiv>button>div{
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    text-justify: auto;
-    padding: 5px;
-  }
-  .googleLoginDiv>button>div>img{
-    width: 8%;
-    margin: auto;
-    /* border:1px solid rgb(168, 62, 62); */
-  }
-  .googleLoginDiv>button>div>p{
-    font-size:16px;
-    margin: auto;
-    /* border:1px solid rgb(202, 28, 28); */
-  }
-  #btn {
-    width: 100%;
-    background-color: #654de4;
-    color: #fff;
-    font: "Inter";
+@media all and (min-width: 321px) and (max-width: 768px) {
+  .form1 > div {
+    font-family: "Inter";
+    width: 98%;
+    margin: 0 auto;
   }
   #urlLabel {
-    margin-left: 17%;
+    margin-left: 0%;
   }
-  .optSpan {
-    color: grey;
-  }
-  
-  @media all and (max-width: 320px) {
-    .form1 > div {
-      font-family: "Inter";
-      width: 98%;
-      margin: 0 auto;
-    }
-    #urlLabel {
-      margin-left: 6%;
-    }
-  }
-  @media all and (min-width: 321px) and (max-width: 768px) {
-    .form1 > div {
-      font-family: "Inter";
-      width: 98%;
-      margin: 0 auto;
-    }
-    #urlLabel {
-      margin-left: 0%;
-    }
-  }
-  
+}
