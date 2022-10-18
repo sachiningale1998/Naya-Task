@@ -42,7 +42,7 @@ const Login = () => {
           <button >
            <div>
            <img src={googleLogo} alt="gLogo" />
-            <p>Log in With Google</p>
+            <p>Log in with Google</p>
            </div>
           </button>
         </div>
