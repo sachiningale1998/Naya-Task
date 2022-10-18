@@ -4,6 +4,10 @@ import googleLogo from "../../collections/images/GoogleLogo.jpg"
 
 const Login = () => {
   return (
+    <>
+    <div>
+      <h3 style={{color:'#654de4'}}>Log In to continue</h3>
+    </div>
     <div className={styles.mainDiv}>
       <form className={styles.form1}>
         <div className="mb-3">
@@ -44,6 +48,7 @@ const Login = () => {
         </div>
       </form>
     </div>
+    </>
   )
 }
 
