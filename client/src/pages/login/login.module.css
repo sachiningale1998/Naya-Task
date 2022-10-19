@@ -1,5 +1,4 @@
 .mainDiv {
-  /* border: 1px solid red; */
   width: 40%;
   text-align: left;
   justify-content: center;
@@ -18,7 +17,6 @@
   margin: 0 auto;
 }
 .forgotPasswordDiv {
-  /* border: 1px solid black; */
   color: #654de4;
   display: block;
   padding-bottom: 2.5%;
@@ -56,12 +54,10 @@
 .googleLoginDiv > button > div > img {
   width: 8%;
   margin: auto;
-  /* border:1px solid rgb(168, 62, 62); */
 }
 .googleLoginDiv > button > div > p {
   font-size: 16px;
   margin: auto;
-  /* border:1px solid rgb(202, 28, 28); */
 }
 #btn {
   width: 100%;
