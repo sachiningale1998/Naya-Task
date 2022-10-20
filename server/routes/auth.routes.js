@@ -30,7 +30,7 @@ authRouter.post("/login", async (req, res) => {
     if (user) {
       const token = jwt.sign(
         {
-          name: req.body.name,
+          firstName: req.body.firstName,
           email: req.body.email,
         },
         "sachin@123"
@@ -41,4 +41,6 @@ authRouter.post("/login", async (req, res) => {
     }
   });
 
-  
+
+
+  module.exports = authRouter;
