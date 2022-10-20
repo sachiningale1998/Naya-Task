@@ -1,0 +1,10 @@
+.parentDiv{
+    width: 100%;
+}
+.imgDiv{
+    width: 4%;
+    margin-left:3%;
+}
+.imgDiv>img{
+    width: 100%;
+}

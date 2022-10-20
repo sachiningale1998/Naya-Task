@@ -1,3 +1,7 @@
+
+.parentDiv{
+  margin-top:8% ;
+}
 .mainDiv {
   width: 40%;
   text-align: left;
@@ -22,6 +26,7 @@
   padding-bottom: 2.5%;
   text-align: center;
   margin: auto;
+  cursor: pointer;
 }
 .forgotPasswordPTag {
   margin: auto;
@@ -37,6 +42,7 @@
 .signupLink {
   color: #654de4;
   font-size: 16px;
+  cursor: pointer;
 }
 .googleLoginDiv > button {
   width: 100%;
@@ -58,6 +64,12 @@
 .googleLoginDiv > button > div > p {
   font-size: 16px;
   margin: auto;
+}
+.googleLoginDiv:hover{
+  background-color: whitesmoke;
+}
+.googleLoginDiv>button:hover{
+  background-color: whitesmoke;
 }
 #btn {
   width: 100%;
