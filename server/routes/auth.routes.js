@@ -19,5 +19,4 @@ authRouter.post("/signup", async (req, res) => {
     console.log('err: ', err);
     res.json({ status: "error", error: "duplicate email" })
    }
-
 })
