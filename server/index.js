@@ -16,6 +16,6 @@ app.listen(PORT, async()=>{
         await connection ;
         console.log("connected to nayadrawboard database");
     }catch(e){
-        console.log("error connecting to database",e);
+        console.log("error connecting to nayadrawboard database",e);
     }
 })
