@@ -1,10 +1,12 @@
 const express = require("express");
-const connection = require("./db")
+const connection = require("./db");
+const authRouter = require("./routes/auth.routes")
 require("dotenv").config();
 const PORT = process.env.PORT
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
+app.use("/auth", authRouter)
 
 
 app.get("/", (req,res)=>{
