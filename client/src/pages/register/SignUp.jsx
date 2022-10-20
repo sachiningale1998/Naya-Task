@@ -56,7 +56,9 @@ const Register = () => {
           <div className={styles.newUserSignupLinkDiv}>
             <p>Or</p>
           </div>
-          <div className={styles.googleLoginDiv}>
+          
+        </form>
+        <div className={styles.googleLoginDiv}>
             <button>
               <div>
                 <img src={googleLogo} alt="gLogo" />
@@ -64,7 +66,6 @@ const Register = () => {
               </div>
             </button>
           </div>
-        </form>
       </div>
     </div>
     

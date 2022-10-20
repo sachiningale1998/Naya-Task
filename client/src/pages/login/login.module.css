@@ -44,6 +44,10 @@
   font-size: 16px;
   cursor: pointer;
 }
+.googleLoginDiv{
+  width: 59%;
+  margin: 0 auto;
+}
 .googleLoginDiv > button {
   width: 100%;
   background-color: white;
@@ -85,6 +89,14 @@
 }
 
 @media all and (max-width: 320px) {
+  .mainDiv {
+    width: 80%;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter";
+    margin: 2rem auto;
+  }
   .form1 > div {
     font-family: "Inter";
     width: 98%;
@@ -93,8 +105,20 @@
   #urlLabel {
     margin-left: 6%;
   }
+  .googleLoginDiv{
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 @media all and (min-width: 321px) and (max-width: 768px) {
+  .mainDiv {
+    width: 60%;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter";
+    margin: 2rem auto;
+  }
   .form1 > div {
     font-family: "Inter";
     width: 98%;
@@ -102,5 +126,9 @@
   }
   #urlLabel {
     margin-left: 0%;
+  }
+  .googleLoginDiv{
+    width: 80%;
+    margin: 0 auto;
   }
 }
