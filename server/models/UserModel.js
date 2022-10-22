@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
     quote: { type: String },
   familyName: { type: String },
   givenName: { type: String },
-  googleId: { type: String,  },
+  googleId: { type: String, unique: true  },
   imageUrl: { type: String },
 })
 
