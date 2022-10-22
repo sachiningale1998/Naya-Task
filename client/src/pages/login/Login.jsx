@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./login.module.css";
 import googleLogo from "../../collections/images/GoogleLogo.jpg";
 import {useNavigate} from "react-router-dom"
@@ -6,7 +6,60 @@ import {useNavigate} from "react-router-dom"
 const Login = () => {
 
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    let response = await fetch("http://127.0.0.1:8080/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password
+      }),
+    });
+
+    const data = await response.json();
+    
+    if (data.user) {
+      let token = data.user
+      localStorage.setItem("token", token);
+      
+      getInfo(data);
+      alert("Login successful");
+      setEmail("");
+     setPassword("");
+    } else {
+      alert("Please check email and password");
+    }
+    
+  }
   
+
+
+  async function getInfo() {
+    try {
+      let resp = await fetch("http://127.0.0.1:8080/auth/info", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email
+        }),
+      });
+      let data = await resp.json();
+      data = data.user;
+     navigate("/")
+    } catch (err) {
+      console.log("errInGetInfo: ", err);
+    }
+  }
+
+
 
   return (
     <div className={styles.parentDiv}>
@@ -14,9 +67,11 @@ const Login = () => {
         <h3 style={{ color: "#654de4" }}>Log In to continue</h3>
       </div>
       <div className={styles.mainDiv}>
-        <form className={styles.form1}>
+        <form onSubmit={handleSubmit} className={styles.form1}>
           <div className="mb-3">
             <input
+             value={email}
+             onChange={(e) => setEmail(e.target.value)}
               type="email"
               className="form-control"
               placeholder="Email"
@@ -26,6 +81,8 @@ const Login = () => {
           </div>
           <div className="mb-3">
             <input
+             value={password}
+             onChange={(e) => setPassword(e.target.value)}
               type="password"
               className="form-control"
               placeholder="Password"
