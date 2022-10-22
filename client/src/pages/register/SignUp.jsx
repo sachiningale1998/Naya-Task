@@ -67,7 +67,6 @@ const Register = () => {
    const onSuccess = (res) => {
     console.log('res: ', res);
      let profileobj = res.profileObj;
-     profileobj.fullName = profileobj.givenName + " " + profileobj.familyName
      setProfile(profileobj);
      logInWithGoogle(profileobj);
    };
@@ -81,7 +80,7 @@ const Register = () => {
    };
  
    const logInWithGoogle = async (profile) => {
-    console.log('profile: ', profile);
+    console.log('profile_logInWithGoogle: ', profile);
      let response = await fetch("http://127.0.0.1:5001/auth/signup", {
        method: "POST",
        headers: {
@@ -91,6 +90,7 @@ const Register = () => {
      });
  
      let data = await response.json();
+     console.log('data:logInWithGoogle ', data);
      if (data.status === "error") {
        alreadyUsed(profile);
      }
