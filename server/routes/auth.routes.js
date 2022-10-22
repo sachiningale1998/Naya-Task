@@ -21,6 +21,8 @@ authRouter.post("/signup", async (req, res) => {
    }
 })
 
+
+
 authRouter.post("/login", async (req, res) => {
     const user = await UserModel.findOne({
       email: req.body.email,
