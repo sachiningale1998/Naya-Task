@@ -9,10 +9,13 @@ const authRouter = Router();
 authRouter.post("/signup", async (req, res) => {
    try{
     await UserModel.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
+      firstName: req.body.givenName,
+      lastName: req.body.familyName,
+      fullName: req.body.fullName,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        googleId: req.body.googleId,
+        imageUrl: req.body.imageUrl
     })
     res.json({ status: "ok"})
    }catch(err){
@@ -64,17 +67,16 @@ authRouter.post("/googlelogin", async (req, res) => {
   const user = await UserModel.findOne({
     email: req.body.email,
   });
-  console.log("user", user);
   if (user) {
     const token = jwt.sign(
       {
-        name: req.body.name,
         email: req.body.email,
       },
       "sachin@7498"
     );
     return res.json({ status: "ok", user: token });
-  } else {
+  } 
+  else {
     return res.json({ status: "error", user: false });
   }
 });

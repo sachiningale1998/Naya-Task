@@ -50,7 +50,7 @@ const Register = () => {
      }
      if (data.status === "ok") {
        alert("Registration successful");
-       navigate("/login");
+       navigate("/");
      }
    }
  
@@ -65,10 +65,10 @@ const Register = () => {
    });
  
    const onSuccess = (res) => {
-     setProfile(res.profileObj);
+    console.log('res: ', res);
      let profileobj = res.profileObj;
-     profileobj.phone = profileobj.googleId + "1";
-     profileobj.password = profileobj.googleId + "2";
+     profileobj.fullName = profileobj.givenName + " " + profileobj.familyName
+     setProfile(profileobj);
      logInWithGoogle(profileobj);
    };
  
@@ -81,6 +81,7 @@ const Register = () => {
    };
  
    const logInWithGoogle = async (profile) => {
+    console.log('profile: ', profile);
      let response = await fetch("http://127.0.0.1:5001/auth/signup", {
        method: "POST",
        headers: {
@@ -90,18 +91,18 @@ const Register = () => {
      });
  
      let data = await response.json();
- 
      if (data.status === "error") {
        alreadyUsed(profile);
      }
      if (data.status === "ok") {
        alert("login successful");
-       navigate("/");
+      //  navigate("/");
      }
    };
  
    async function alreadyUsed(profile) {
      let email = profile.email;
+     console.log('email: ', email);
      let response = await fetch("http://127.0.0.1:5001/auth/googlelogin", {
        method: "POST",
        headers: {
@@ -111,15 +112,16 @@ const Register = () => {
      });
  
      const data = await response.json();
+     console.log('dataalreadyUsed: ', data);
  
-     if (data.user) {
+     if (data.user ===true) {
        localStorage.setItem("token", data.user);
-       alert("Login successful");
-     } else {
-       alert("Please check email and password");
-     }
-     getInfo(profile);
-     setEmail("");
+       //  alert("Login successful");
+       getInfo(profile);
+      } else {
+        alert("Please check email and password");
+      }
+      setEmail("");
      setPassword("");
    }
  
@@ -135,8 +137,9 @@ const Register = () => {
        });
        let data = await resp.json();
        data = data.user;
+       console.log('datagetInfo: ', data);
        setUserId(data._id);
-       navigate("/");
+      //  navigate("/");
      } catch (err) {
        console.log("errInGetInfo: ", err);
      }
