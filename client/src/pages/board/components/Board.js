@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from "./board.module.css"
 import {useOnDraw} from "../components/Hooks"
 import useRandomColor from './useRandomColor'
+import { useEffect } from 'react'
 
 const boardStyle = {
     border: '1px solid black',
@@ -10,11 +11,11 @@ const boardStyle = {
 
 const Board = ({width, height}) => {
   const setBoardRef = useOnDraw(onDraw);
-  // const randomColor = useRandomColor();
-  // console.log('randomColor: ', randomColor);
+  const randomColor = useRandomColor();
+
 
   function onDraw(ctx, point, prevPoint) {
-   drawLine(prevPoint, point, ctx, '#000000' , 5)
+   drawLine(prevPoint, point, ctx, randomColor , 5)
   }
 
   function drawLine(start, end, ctx, color, width){

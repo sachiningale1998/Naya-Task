@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react"
 
 const useRandomColor=()=>{
@@ -10,7 +11,10 @@ const useRandomColor=()=>{
     randomNumber = randomNumber.toString(16);
     let randColor = randomNumber.padStart(6, 0);
     randColor = `#${randColor.toUpperCase()}`
-     setRandomColor(randColor)
+
+    useEffect(()=>{
+        setRandomColor(randColor)
+    }, [])
 
      return randomColor;
 

@@ -42,7 +42,6 @@ export function useOnDraw(onDraw){
                 const ctx = boardRef.current.getContext('2d');
                 if(onDraw) onDraw(ctx, point, prevPointRef.current);
                 prevPointRef.current = point;
-                console.log('point: ', point);
             }
         }
         mouseMoveListenerRef.current = mouseMoveListener;
