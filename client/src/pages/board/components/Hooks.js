@@ -11,6 +11,8 @@ export function useOnDraw(onDraw){
     const mouseDownListenerRef = useRef(null);
     const mouseUpListenerRef = useRef(null);
 
+    const prevPointRef = useRef(null);
+
     useEffect(()=>{
         return ()=>{
             if(mouseMoveListenerRef.current){
@@ -38,7 +40,8 @@ export function useOnDraw(onDraw){
             if(isDrawingRef.current){
                 const point= computePointInBoard(e.clientX, e.clientY);
                 const ctx = boardRef.current.getContext('2d');
-                if(onDraw) onDraw(ctx, point);
+                if(onDraw) onDraw(ctx, point, prevPointRef.current);
+                prevPointRef.current = point;
                 console.log('point: ', point);
             }
         }
@@ -49,6 +52,7 @@ export function useOnDraw(onDraw){
     function initMouseUpListener(){
         const listener=()=>{
             isDrawingRef.current = false;
+            prevPointRef.current = null;
         }
         mouseUpListenerRef.current = listener;
         window.addEventListener("mouseup", listener)

@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from "./board.module.css"
 import {useOnDraw} from "../components/Hooks"
+import useRandomColor from './useRandomColor'
 
 const boardStyle = {
     border: '1px solid black',
@@ -9,11 +10,25 @@ const boardStyle = {
 
 const Board = ({width, height}) => {
   const setBoardRef = useOnDraw(onDraw);
+  // const randomColor = useRandomColor();
+  // console.log('randomColor: ', randomColor);
 
-  function onDraw(ctx, point) {
-    ctx.fillStyle = '#000000';
+  function onDraw(ctx, point, prevPoint) {
+   drawLine(prevPoint, point, ctx, '#000000' , 5)
+  }
+
+  function drawLine(start, end, ctx, color, width){
+    start = start ??  end;
     ctx.beginPath();
-    ctx.arc(point.x, point.y, 2 , 0, 2*Math.PI);
+    ctx.lineWidth = width;
+    ctx.strokeStyle = color;
+    ctx.moveTo(start.x, start.y);
+    ctx.lineTo(end.x, end.y);
+    ctx.stroke();
+
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(start.x, start.y, 2, 0, 2 * Math.PI)
     ctx.fill();
   }
 
