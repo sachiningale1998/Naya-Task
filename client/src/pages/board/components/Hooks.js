@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 
 export function useOnDraw(onDraw){
@@ -11,8 +11,22 @@ export function useOnDraw(onDraw){
     const mouseDownListenerRef = useRef(null);
     const mouseUpListenerRef = useRef(null);
 
+    useEffect(()=>{
+        return ()=>{
+            if(mouseMoveListenerRef.current){
+                window.removeEventListener("mousemove", mouseMoveListenerRef.current)
+            }
+            if(mouseUpListenerRef.current){
+                window.removeEventListener("mouseup", mouseUpListenerRef.current)
+            }
+        }
+    }, [])
+
     function setBoardRef(ref){
         if(!ref) return ;
+        if(boardRef.current){
+            boardRef.current.removeEventListener("mousedown", mouseDownListenerRef.current)
+        }
         boardRef.current = ref;
         initMouseMoveListener();
         initMouseDownListener();
