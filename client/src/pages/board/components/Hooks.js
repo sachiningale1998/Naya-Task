@@ -1,82 +1,83 @@
 import { useEffect, useRef } from "react";
 
+export function useOnDraw(onDraw) {
+  const boardRef = useRef(null);
 
-export function useOnDraw(onDraw){
+  const isDrawingRef = useRef(false);
 
-    const boardRef =useRef(null);
+  const mouseMoveListenerRef = useRef(null);
+  const mouseDownListenerRef = useRef(null);
+  const mouseUpListenerRef = useRef(null);
 
-    const isDrawingRef = useRef(false);
+  const prevPointRef = useRef(null);
 
-    const mouseMoveListenerRef = useRef(null);
-    const mouseDownListenerRef = useRef(null);
-    const mouseUpListenerRef = useRef(null);
+  useEffect(() => {
+    return () => {
+      if (mouseMoveListenerRef.current) {
+        window.removeEventListener("mousemove", mouseMoveListenerRef.current);
+      }
+      if (mouseUpListenerRef.current) {
+        window.removeEventListener("mouseup", mouseUpListenerRef.current);
+      }
+    };
+  }, []);
 
-    const prevPointRef = useRef(null);
-
-    useEffect(()=>{
-        return ()=>{
-            if(mouseMoveListenerRef.current){
-                window.removeEventListener("mousemove", mouseMoveListenerRef.current)
-            }
-            if(mouseUpListenerRef.current){
-                window.removeEventListener("mouseup", mouseUpListenerRef.current)
-            }
-        }
-    }, [])
-
-    function setBoardRef(ref){
-        if(!ref) return ;
-        if(boardRef.current){
-            boardRef.current.removeEventListener("mousedown", mouseDownListenerRef.current)
-        }
-        boardRef.current = ref;
-        initMouseMoveListener();
-        initMouseDownListener();
-        initMouseUpListener();
+  function setBoardRef(ref) {
+    if (!ref) return;
+    if (boardRef.current) {
+      boardRef.current.removeEventListener(
+        "mousedown",
+        mouseDownListenerRef.current
+      );
     }
+    boardRef.current = ref;
+    initMouseMoveListener();
+    initMouseDownListener();
+    initMouseUpListener();
+  }
 
-    function initMouseMoveListener(){
-        const mouseMoveListener=(e)=>{
-            if(isDrawingRef.current){
-                const point= computePointInBoard(e.clientX, e.clientY);
-                const ctx = boardRef.current.getContext('2d');
-                if(onDraw) onDraw(ctx, point, prevPointRef.current);
-                prevPointRef.current = point;
-            }
-        }
-        mouseMoveListenerRef.current = mouseMoveListener;
-        window.addEventListener("mousemove", mouseMoveListener);
-    }
+  function initMouseMoveListener() {
+    const mouseMoveListener = (e) => {
+      if (isDrawingRef.current) {
+        const point = computePointInBoard(e.clientX, e.clientY);
+        const ctx = boardRef.current.getContext("2d");
+        if (onDraw) onDraw(ctx, point, prevPointRef.current);
+        prevPointRef.current = point;
+      }
+    };
+    mouseMoveListenerRef.current = mouseMoveListener;
+    window.addEventListener("mousemove", mouseMoveListener);
+  }
 
-    function initMouseUpListener(){
-        const listener=()=>{
-            isDrawingRef.current = false;
-            prevPointRef.current = null;
-        }
-        mouseUpListenerRef.current = listener;
-        window.addEventListener("mouseup", listener)
-    }
-    
-    function initMouseDownListener(){
-        if(!boardRef.current) return ;
-        const listener = ()=>{
-            isDrawingRef.current = true
-        }
-        mouseDownListenerRef.current = listener;
-        boardRef.current.addEventListener("mousedown", listener);
-    }
+  function initMouseUpListener() {
+    const listener = () => {
+      isDrawingRef.current = false;
+      prevPointRef.current = null;
+    };
+    mouseUpListenerRef.current = listener;
+    window.addEventListener("mouseup", listener);
+  }
 
-    function computePointInBoard(clientX, clientY){
-        if(boardRef.current){
-            const boundingRect = boardRef.current.getBoundingClientRect();
-            return {
-                x : clientX - boundingRect.left,
-                y : clientY - boundingRect.top
-            }
-        }else{
-            return null;
-        }
-    }
+  function initMouseDownListener() {
+    if (!boardRef.current) return;
+    const listener = () => {
+      isDrawingRef.current = true;
+    };
+    mouseDownListenerRef.current = listener;
+    boardRef.current.addEventListener("mousedown", listener);
+  }
 
-    return setBoardRef;
+  function computePointInBoard(clientX, clientY) {
+    if (boardRef.current) {
+      const boundingRect = boardRef.current.getBoundingClientRect();
+      return {
+        x: clientX - boundingRect.left,
+        y: clientY - boundingRect.top,
+      };
+    } else {
+      return null;
+    }
+  }
+
+  return setBoardRef;
 }
