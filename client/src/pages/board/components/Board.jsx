@@ -3,6 +3,7 @@ import styles from "./board.module.css";
 import { useOnDraw } from "./Hooks";
 import useRandomColor from "./useRandomColor";
 import { useEffect } from "react";
+import Users from "./Users"
 
 const boardStyle = {
   border: "1px solid black",
@@ -102,7 +103,6 @@ const Board = ({ width, height }) => {
   return (
     <div className={styles.container}>
       
-      {canvasVisible && 
       <div className={styles.sketchDiv}>
         <div>
         <canvas
@@ -121,22 +121,17 @@ const Board = ({ width, height }) => {
         <div className={styles.users}>
          
              <div className={styles.usersHeadingDiv}>
-             <h6>Users</h6>
-             <i className="fa-solid fa-angles-down"></i>
-           </div>
-           <div>
-           {allUsers.map(function(el,index){
-            <div>
-              <p>{el.givenName}</p>
-            </div>
-           })}
-           </div>
+              <h6>Users</h6>
+              <i className="fa-solid fa-angles-down"></i>
+             </div>
+             
+              {allUsers && <Users allUsers={allUsers} /> }
          
         </div>
 
 
       </div>
-        }
+        
      
        
       <div>

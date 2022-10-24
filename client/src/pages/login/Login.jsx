@@ -34,7 +34,7 @@ const Login = () => {
     });
 
     const data = await response.json();
-    console.log('data: ', data.user);
+    console.log('dataInauthLogin: ', data.user);
 
     if (data.user) {
       let token = data.user
@@ -43,7 +43,7 @@ const Login = () => {
       alert("Login successful");
       setEmail("");
       setPassword("");
-      getInfo(data);
+      navigate("/drawboard")
     } else {
       alert("Please check email and password");
     }
