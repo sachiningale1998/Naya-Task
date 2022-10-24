@@ -25,7 +25,7 @@ const Register = () => {
  
    async function handleSubmit(event) {
      event.preventDefault();
-     let response = await fetch("http://127.0.0.1:5001/auth/signup", {
+     let response = await fetch("https://sketchserver.herokuapp.com/auth/signup", {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const Register = () => {
  
    const logInWithGoogle = async (profile) => {
     console.log('profile_logInWithGoogle: ', profile);
-     let response = await fetch("http://127.0.0.1:5001/auth/signup", {
+     let response = await fetch("https://sketchserver.herokuapp.com/auth/signup", {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
@@ -96,14 +96,14 @@ const Register = () => {
      }
      if (data.status === "ok") {
        alert("login successful");
-      //  navigate("/");
+       navigate("/drawboard");
      }
    };
  
    async function alreadyUsed(profile) {
      let email = profile.email;
      console.log('email: ', email);
-     let response = await fetch("http://127.0.0.1:5001/auth/googlelogin", {
+     let response = await fetch("https://sketchserver.herokuapp.com/auth/googlelogin", {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
@@ -116,7 +116,7 @@ const Register = () => {
  
      if (data.user ===true) {
        localStorage.setItem("token", data.user);
-       //  alert("Login successful");
+       alert("Login successful");
        getInfo(profile);
       } else {
         alert("Please check email and password");
@@ -128,7 +128,7 @@ const Register = () => {
    async function getInfo(profile) {
      let email = profile.email;
      try {
-       let resp = await fetch("http://127.0.0.1:5001/auth/googleinfo", {
+       let resp = await fetch("https://sketchserver.herokuapp.com/auth/googleinfo", {
          method: "POST",
          headers: {
            "Content-Type": "application/json",
@@ -139,7 +139,7 @@ const Register = () => {
        data = data.user;
        console.log('datagetInfo: ', data);
        setUserId(data._id);
-      //  navigate("/");
+       navigate("/drawboard");
      } catch (err) {
        console.log("errInGetInfo: ", err);
      }

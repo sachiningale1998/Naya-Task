@@ -22,7 +22,7 @@ const Login = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    let response = await fetch("http://127.0.0.1:5001/auth/login", {
+    let response = await fetch("https://sketchserver.herokuapp.com/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const Login = () => {
       let token = data.user
       localStorage.setItem("token", token);
       
-      // alert("Login successful");
+      alert("Login successful");
       setEmail("");
       setPassword("");
       getInfo(data);
@@ -74,7 +74,7 @@ const Login = () => {
 
   const logInWithGoogle = async (profile) => {
     console.log('profile_logInWithGoogle: ', profile);
-     let response = await fetch("http://127.0.0.1:5001/auth/signup", {
+     let response = await fetch("https://sketchserver.herokuapp.com/auth/signup", {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
@@ -89,7 +89,7 @@ const Login = () => {
      }
      if (data.status === "ok") {
        alert("login successful");
-      //  navigate("/");
+       navigate("/drawboard");
      }
    };
  
@@ -98,7 +98,7 @@ const Login = () => {
   async function alreadyUsed(profile) {
     let email = profile.email;
     console.log('email: ', email);
-    let response = await fetch("http://127.0.0.1:5001/auth/googlelogin", {
+    let response = await fetch("https://sketchserver.herokuapp.com/auth/googlelogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -111,7 +111,7 @@ const Login = () => {
 
     if (data.user) {
       localStorage.setItem("token", data.user);
-      //  alert("Login successful");
+       alert("Login successful");
       getInfo(email);
      } else {
        alert("Please check email and password");
@@ -122,7 +122,7 @@ const Login = () => {
 
   async function getInfo(email) {
     try {
-      let resp = await fetch("http://127.0.0.1:5001/auth/info", {
+      let resp = await fetch("https://sketchserver.herokuapp.com/auth/info", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,8 +133,8 @@ const Login = () => {
       });
       let data = await resp.json();
       data = data.user;
-      console.log('datainInfo: ', data);
-    //  navigate("/")
+      console.log('datainInfoLogin: ', data);
+     navigate("/drawboard")
     } catch (err) {
       console.log("errInGetInfo: ", err);
     }

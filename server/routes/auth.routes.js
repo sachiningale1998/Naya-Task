@@ -55,7 +55,8 @@ authRouter.post("/info", async (req, res) => {
       givenName: user.givenName,
       familyName: user.familyName,
       email: user.email,
-      _id: user._id
+      _id: user._id,
+      imageUrl: user.imageUrl
     };
     return res.json({ status: "ok", user: getinfo });
   } else {
@@ -70,7 +71,7 @@ authRouter.post("/googlelogin", async (req, res) => {
   if (user) {
     const token = jwt.sign(
       {
-        email: req.body.email,
+        email: req.body.email
       },
       "sachin@7498"
     );
@@ -90,7 +91,7 @@ authRouter.post("/googleinfo", async (req, res) => {
     const getinfo = {
       name: user.name,
       email: user.email,
-      _id: user._id
+      _id: user._id,
     };
     return res.json({ status: "ok", user: getinfo });
   } else {

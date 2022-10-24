@@ -1,5 +1,7 @@
 .parentDiv{
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 .imgDiv{
     width: 4%;
@@ -7,4 +9,20 @@
 }
 .imgDiv>img{
     width: 100%;
+}
+.userProfile{
+    display:flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+.userProfile>div>h6{
+    margin: 10% auto;
+}
+.userProfileImg{
+    width: 40px;
+    border-radius:20px;
+}
+.userProfileImg>img{
+    width: 100%;
+    border-radius:20px;
 }

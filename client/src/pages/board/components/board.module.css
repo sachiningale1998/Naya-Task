@@ -1,4 +1,49 @@
 .container {
   justify-content: center;
+  width: 100%;
   margin: auto;
+  background-color: whitesmoke;
+}
+.sketchDiv{
+    display: flex;
+    gap: 10px;
+    justify-content:center;
+}
+.saveBtn{
+    margin-top: 25px;
+    margin-right: 100px;
+    border: none;
+    background-color:#654de4;
+    color: aliceblue;
+    padding:5px 15px;
+    border-radius:5px;
+}
+.newSketchBtn{
+    border: none;
+    background-color:#654de4;
+    color: aliceblue;
+    padding:5px 15px;
+    border-radius:5px;
+}
+.users{
+    margin-top: 25px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    background-color:whitesmoke;
+    /* position: fixed;
+    right: 3%;
+    z-index: 1; */
+}
+.usersHeadingDiv{
+    display: flex;
+    gap: 60%;
+    margin: auto;
+}
+.usersHeadingDiv>h6{
+    margin-left: 15px;
+}
+.usersHeadingDiv>i{
+    font-size: 13px;
+    margin-top:5px;
 }
