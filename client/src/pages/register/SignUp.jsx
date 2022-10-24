@@ -25,33 +25,36 @@ const Register = () => {
  
    async function handleSubmit(event) {
      event.preventDefault();
-     let response = await fetch("https://sketchserver.herokuapp.com/auth/signup", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify({
-         givenName,
-         familyName,
-         email,
-         password
-       }),
-     });
- 
-     let data = await response.json();
-     console.log("dataSignup: ", data);
-     setEmail("");
-     setPassword("");
-     setGivenName("");
-     setFamilyName("");
- 
-     if (data.status === "error") {
-       alert("Email or number is already in use ");
-     }
-     if (data.status === "ok") {
-       alert("Registration successful");
-       navigate("/");
-     }
+    try{
+      let response = await fetch("https://sketchserver.herokuapp.com/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          givenName,
+          familyName,
+          email,
+          password
+        }),
+      });
+  
+      let data = await response.json();
+      setEmail("");
+      setPassword("");
+      setGivenName("");
+      setFamilyName("");
+  
+      if (data.status === "error") {
+        alert("Email or number is already in use ");
+      }
+      if (data.status === "ok") {
+        alert("Registration successful");
+        navigate("/");
+      }
+    }catch(e){
+      console.log('e: ', e);
+    }
    }
  
    useEffect(() => {
@@ -65,7 +68,6 @@ const Register = () => {
    });
  
    const onSuccess = (res) => {
-    console.log('res: ', res);
      let profileobj = res.profileObj;
      setProfile(profileobj);
      logInWithGoogle(profileobj);
@@ -80,49 +82,55 @@ const Register = () => {
    };
  
    const logInWithGoogle = async (profile) => {
-    console.log('profile_logInWithGoogle: ', profile);
-     let response = await fetch("https://sketchserver.herokuapp.com/auth/signup", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify({ ...profile }),
-     });
+     try{
+      let response = await fetch("https://sketchserver.herokuapp.com/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...profile }),
+      });
+  
+      let data = await response.json();
  
-     let data = await response.json();
-     console.log('data:logInWithGoogle ', data);
-     if (data.status === "error") {
-       alreadyUsed(profile);
-     }
-     if (data.status === "ok") {
-       alert("login successful");
-       navigate("/drawboard");
+      if (data.status === "error") {
+        alreadyUsed(profile);
+      }
+      if (data.status === "ok") {
+        alert("login successful");
+        navigate("/drawboard");
+      }
+     }catch(e){
+      console.log('e: ', e);
      }
    };
  
    async function alreadyUsed(profile) {
      let email = profile.email;
-     console.log('email: ', email);
-     let response = await fetch("https://sketchserver.herokuapp.com/auth/googlelogin", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify({ email }),
-     });
- 
-     const data = await response.json();
-     console.log('dataalreadyUsed: ', data);
- 
-     if (data.user ===true) {
-       localStorage.setItem("token", data.user);
-       alert("Login successful");
-       getInfo(profile);
-      } else {
-        alert("Please check email and password");
-      }
-      setEmail("");
-     setPassword("");
+     try{
+      let response = await fetch("https://sketchserver.herokuapp.com/auth/googlelogin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+  
+      const data = await response.json();
+  
+      if (data.user ===true) {
+        localStorage.setItem("token", data.user);
+        alert("Login successful");
+        getInfo(profile);
+       } else {
+         alert("Please check email and password");
+       }
+       setEmail("");
+      setPassword("");
+     }catch(e){
+      console.log('e: ', e);
+
+     }
    }
  
    async function getInfo(profile) {
@@ -207,12 +215,6 @@ const Register = () => {
           
         </form>
         <div className={styles.googleLoginDiv}>
-            {/* <button>
-              <div>
-                <img src={googleLogo} alt="gLogo" />
-                <p>Log in with Google</p>
-              </div>
-            </button> */}
             <GoogleLogin
                 buttonText="Sign in with Google"
                 clientId={clientId}

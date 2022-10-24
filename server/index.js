@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/auth", authRouter)
-app.use("/drawings", drawingRouter)
+app.use("/user", drawingRouter)
 
 
 app.get("/", (req,res)=>{

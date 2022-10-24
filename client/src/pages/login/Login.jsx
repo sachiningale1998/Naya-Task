@@ -22,30 +22,34 @@ const Login = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    let response = await fetch("https://sketchserver.herokuapp.com/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password
-      }),
-    });
+    try{
+      let response = await fetch("https://sketchserver.herokuapp.com/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (data.user) {
+        let token = data.user
+        localStorage.setItem("token", token);
+        
+        alert("Login successful");
+        setEmail("");
+        setPassword("");
+        navigate("/drawboard")
+      } else {
+        alert("Please check email and password");
+      }
+    }catch(e){
+      console.log('e: ', e);
 
-    const data = await response.json();
-    console.log('dataInauthLogin: ', data.user);
-
-    if (data.user) {
-      let token = data.user
-      localStorage.setItem("token", token);
-      
-      alert("Login successful");
-      setEmail("");
-      setPassword("");
-      navigate("/drawboard")
-    } else {
-      alert("Please check email and password");
     }
     
   }
@@ -62,7 +66,6 @@ const Login = () => {
   });
 
   const onSuccess = (res) => {
-   console.log('res: ', res);
     let profileobj = res.profileObj;
     setProfile(profileobj);
     logInWithGoogle(profileobj);
@@ -73,23 +76,26 @@ const Login = () => {
   };
 
   const logInWithGoogle = async (profile) => {
-    console.log('profile_logInWithGoogle: ', profile);
-     let response = await fetch("https://sketchserver.herokuapp.com/auth/signup", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify({ ...profile }),
-     });
- 
-     let data = await response.json();
-     console.log('data:logInWithGoogle ', data);
-     if (data.status === "error") {
-       alreadyUsed(profile);
-     }
-     if (data.status === "ok") {
-       alert("login successful");
-       navigate("/drawboard");
+     try{
+      let response = await fetch("https://sketchserver.herokuapp.com/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...profile }),
+      });
+  
+      let data = await response.json();
+      if (data.status === "error") {
+        alreadyUsed(profile);
+      }
+      if (data.status === "ok") {
+        alert("login successful");
+        navigate("/drawboard");
+      }
+     }catch(e){
+      console.log('e: ', e);
+
      }
    };
  
@@ -97,8 +103,8 @@ const Login = () => {
   
   async function alreadyUsed(profile) {
     let email = profile.email;
-    console.log('email: ', email);
-    let response = await fetch("https://sketchserver.herokuapp.com/auth/googlelogin", {
+    try{
+      let response = await fetch("https://sketchserver.herokuapp.com/auth/googlelogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -107,7 +113,6 @@ const Login = () => {
     });
 
     const data = await response.json();
-    console.log('dataalreadyUsed: ', data);
 
     if (data.user) {
       localStorage.setItem("token", data.user);
@@ -118,6 +123,11 @@ const Login = () => {
      }
      setEmail("");
     setPassword("");
+
+    }catch(e){
+      console.log('e: ', e);
+
+    }
   }
 
   async function getInfo(email) {
@@ -133,7 +143,6 @@ const Login = () => {
       });
       let data = await resp.json();
       data = data.user;
-      console.log('datainInfoLogin: ', data);
      navigate("/drawboard")
     } catch (err) {
       console.log("errInGetInfo: ", err);

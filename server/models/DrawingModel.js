@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const drawingSchema = mongoose.Schema({
-    userId: {type: String, required: true},
+    userId: {type: String},
+    sketchName: {type: String},
     canvasUrl: {type: String},
     givenName: {type: String},
     familyName: { type: String},

@@ -10,14 +10,14 @@ drawingRouter.get("/getUsers", async (req, res) => {
     res.send(users)
 })
 
-drawingRouter.get("/:userId/drawings", async (req, res) => {
+drawingRouter.get("/drawings", async (req, res) => {
   const userId = req.params.userId;
-  const drawings = await DrawingModel.find({ userId: userId });
+  const drawings = await DrawingModel.find();
   res.send(drawings);
 });
 
 
-drawingRouter.post("/:userId/drawings", async (req, res) => {
+drawingRouter.post("/drawings", async (req, res) => {
   const userId = req.params.userId;
   let payload = {
     ...req.body,
