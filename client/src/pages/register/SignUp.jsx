@@ -24,7 +24,7 @@ const Register = () => {
     event.preventDefault();
     try {
       let response = await fetch(
-        "https://sketchserver.herokuapp.com/auth/signup",
+        "http://127.0.0.1:5001/auth/signup",
         {
           method: "POST",
           headers: {
@@ -46,7 +46,7 @@ const Register = () => {
       setFamilyName("");
 
       if (data.status === "error") {
-        alert("Email or number is already in use ");
+        alert("Email is already in use ");
       }
       if (data.status === "ok") {
         alert("Registration successful");

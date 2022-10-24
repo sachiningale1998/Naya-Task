@@ -26,7 +26,7 @@ const Board = ({ width, height }) => {
   const [userId, setUserId] = useState("");
   const [allUsers, setAllUsers] = useState([]);
   const [allSketches, setAllSketches] = useState([]);
-  console.log("allUsers: ", allUsers);
+
 
   function onDraw(ctx, point, prevPoint) {
     drawLine(prevPoint, point, ctx, randomColor, 5);
@@ -108,8 +108,6 @@ const Board = ({ width, height }) => {
   // };
   // img.src = strDataURI;
   // setCanvasUrl(strDataURI)
-
-  
   async function handleSave() {
     var strDataURI = document.getElementById("canvas").toDataURL();
     setCanvasUrl(strDataURI);
