@@ -9,8 +9,8 @@ const authRouter = Router();
 authRouter.post("/signup", async (req, res) => {
    try{
     await UserModel.create({
-      firstName: req.body.givenName,
-      lastName: req.body.familyName,
+      givenName: req.body.givenName,
+      familyName: req.body.familyName,
       fullName: req.body.fullName,
         email: req.body.email,
         password: req.body.password,
@@ -52,8 +52,8 @@ authRouter.post("/info", async (req, res) => {
   if (user) {
     console.log("userininfobackend", user);
     const getinfo = {
-      firstName: user.firstName,
-      lastName: user.lastName,
+      givenName: user.givenName,
+      familyName: user.familyName,
       email: user.email,
       _id: user._id
     };

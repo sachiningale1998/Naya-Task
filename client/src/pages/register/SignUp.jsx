@@ -11,8 +11,8 @@ import { useEffect } from 'react';
 const Register = () => {
 
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [givenName, setGivenName] = useState("");
+  const [familyName, setFamilyName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userId, setUserId] = useState("");
@@ -31,8 +31,8 @@ const Register = () => {
          "Content-Type": "application/json",
        },
        body: JSON.stringify({
-         firstName,
-         lastName,
+         givenName,
+         familyName,
          email,
          password
        }),
@@ -42,8 +42,8 @@ const Register = () => {
      console.log("dataSignup: ", data);
      setEmail("");
      setPassword("");
-     setFirstName("");
-     setLastName("");
+     setGivenName("");
+     setFamilyName("");
  
      if (data.status === "error") {
        alert("Email or number is already in use ");
@@ -154,8 +154,8 @@ const Register = () => {
         <form onSubmit={handleSubmit} className={styles.form1}>
         <div className="mb-3">
             <input
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={givenName}
+            onChange={(e) => setGivenName(e.target.value)}
               type="string"
               className="form-control"
               placeholder="First name"
@@ -164,8 +164,8 @@ const Register = () => {
           </div>
           <div className="mb-3">
             <input
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            value={familyName}
+            onChange={(e) => setFamilyName(e.target.value)}
               type="string"
               className="form-control"
               placeholder="Last name"

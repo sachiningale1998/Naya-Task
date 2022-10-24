@@ -20,9 +20,9 @@ const Login = () => {
      "694320822890-5esppm1osmvbjucjd0g1cplthc9euqa1.apps.googleusercontent.com";
  
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    let response = await fetch("http://127.0.0.1:8080/auth/login", {
+  async function handleSubmit(e) {
+    e.preventDefault();
+    let response = await fetch("http://127.0.0.1:5001/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,13 +34,13 @@ const Login = () => {
     });
 
     const data = await response.json();
-    console.log('data: ', data);
+    console.log('data: ', data.user);
 
     if (data.user) {
       let token = data.user
       localStorage.setItem("token", token);
       
-      alert("Login successful");
+      // alert("Login successful");
       setEmail("");
       setPassword("");
       getInfo(data);
@@ -109,10 +109,10 @@ const Login = () => {
     const data = await response.json();
     console.log('dataalreadyUsed: ', data);
 
-    if (data.user ===true) {
+    if (data.user) {
       localStorage.setItem("token", data.user);
       //  alert("Login successful");
-      getInfo(profile);
+      getInfo(email);
      } else {
        alert("Please check email and password");
      }
@@ -120,9 +120,9 @@ const Login = () => {
     setPassword("");
   }
 
-  async function getInfo() {
+  async function getInfo(email) {
     try {
-      let resp = await fetch("http://127.0.0.1:8080/auth/info", {
+      let resp = await fetch("http://127.0.0.1:5001/auth/info", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +133,8 @@ const Login = () => {
       });
       let data = await resp.json();
       data = data.user;
-     navigate("/")
+      console.log('datainInfo: ', data);
+    //  navigate("/")
     } catch (err) {
       console.log("errInGetInfo: ", err);
     }
