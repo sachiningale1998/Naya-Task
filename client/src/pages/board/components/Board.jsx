@@ -97,21 +97,23 @@ const Board = ({ width, height }) => {
       console.log("err: ", err);
     }
   }
+  
+  // var img = new Image;
+  // img.src = strDataURI;
+  // var myCanvas = document.getElementById('canvas');
+  // var ctx = myCanvas.getContext('2d');
+  // var img = new Image;
+  // img.onload = function(){
+  //   ctx.drawImage(img,0,0); // Or at whatever offset you like
+  // };
+  // img.src = strDataURI;
+  // setCanvasUrl(strDataURI)
 
+  
   async function handleSave() {
     var strDataURI = document.getElementById("canvas").toDataURL();
     setCanvasUrl(strDataURI);
 
-    // var img = new Image;
-    // img.src = strDataURI;
-    // var myCanvas = document.getElementById('canvas');
-    // var ctx = myCanvas.getContext('2d');
-    // var img = new Image;
-    // img.onload = function(){
-    //   ctx.drawImage(img,0,0); // Or at whatever offset you like
-    // };
-    // img.src = strDataURI;
-    // setCanvasUrl(strDataURI)
 
     let payload = { canvasUrl: canvasUrl, userId: userId };
     payload.sketchName = newSketchName;
