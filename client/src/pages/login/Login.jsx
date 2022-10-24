@@ -34,15 +34,16 @@ const Login = () => {
     });
 
     const data = await response.json();
+    console.log('data: ', data);
 
     if (data.user) {
       let token = data.user
       localStorage.setItem("token", token);
       
-      getInfo(data);
       alert("Login successful");
       setEmail("");
-     setPassword("");
+      setPassword("");
+      getInfo(data);
     } else {
       alert("Please check email and password");
     }
