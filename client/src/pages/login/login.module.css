@@ -1,6 +1,5 @@
-
-.parentDiv{
-  margin-top:8% ;
+.parentDiv {
+  margin-top: 8%;
 }
 .mainDiv {
   width: 40%;
@@ -44,7 +43,7 @@
   font-size: 16px;
   cursor: pointer;
 }
-.googleLoginDiv{
+.googleLoginDiv {
   width: 59%;
   margin: 0 auto;
 }
@@ -69,10 +68,10 @@
   font-size: 16px;
   margin: auto;
 }
-.googleLoginDiv:hover{
+.googleLoginDiv:hover {
   background-color: whitesmoke;
 }
-.googleLoginDiv>button:hover{
+.googleLoginDiv > button:hover {
   background-color: whitesmoke;
 }
 #btn {
@@ -105,7 +104,7 @@
   #urlLabel {
     margin-left: 6%;
   }
-  .googleLoginDiv{
+  .googleLoginDiv {
     width: 80%;
     margin: 0 auto;
   }
@@ -127,7 +126,7 @@
   #urlLabel {
     margin-left: 0%;
   }
-  .googleLoginDiv{
+  .googleLoginDiv {
     width: 80%;
     margin: 0 auto;
   }

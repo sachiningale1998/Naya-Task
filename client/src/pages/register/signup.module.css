@@ -1,133 +1,131 @@
+.parentDiv {
+  margin-top: 7%;
+}
+.mainDiv {
+  width: 40%;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter";
+  margin: 2rem auto;
+}
+.form1 {
+  justify-content: center;
+  align-items: center;
+  margin: 0 5%;
+}
+.form1 > div {
+  font-family: "Inter";
+  width: 65%;
+  margin: 0 auto;
+}
+.forgotPasswordDiv {
+  color: #654de4;
+  display: block;
+  padding-bottom: 2.5%;
+  text-align: center;
+  margin: auto;
+}
+.forgotPasswordPTag {
+  margin: auto;
+}
+.newUserSignupLinkDiv {
+  margin: 2% auto;
+  text-align: center;
+  font-size: 13px;
+}
+.newUserSignupLinkDiv > p {
+  margin: 2% auto;
+}
+.signupLink {
+  color: #654de4;
+  font-size: 16px;
+}
+.googleLoginDiv {
+  width: 59%;
+  margin: 0 auto;
+}
+.googleLoginDiv > button {
+  width: 100%;
+  background-color: white;
+  border: 1.5px solid whitesmoke;
+  border-radius: 5px;
+}
+.googleLoginDiv > button > div {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  text-justify: auto;
+  padding: 5px;
+}
+.googleLoginDiv > button > div > img {
+  width: 8%;
+  margin: auto;
+}
+.googleLoginDiv > button > div > p {
+  font-size: 16px;
+  margin: auto;
+}
+.googleLoginDiv:hover {
+  background-color: whitesmoke;
+}
+.googleLoginDiv > button:hover {
+  background-color: whitesmoke;
+}
+#btn {
+  width: 100%;
+  background-color: #654de4;
+  color: #fff;
+  font: "Inter";
+}
+#urlLabel {
+  margin-left: 17%;
+}
+.optSpan {
+  color: grey;
+}
 
-.parentDiv{
-    margin-top:7% ;
-  }
+@media all and (max-width: 320px) {
   .mainDiv {
-    width: 40%;
+    width: 80%;
     text-align: left;
     justify-content: center;
     align-items: center;
     font-family: "Inter";
     margin: 2rem auto;
   }
-  .form1 {
+  .form1 > div {
+    font-family: "Inter";
+    width: 98%;
+    margin: 0 auto;
+  }
+  #urlLabel {
+    margin-left: 6%;
+  }
+  .googleLoginDiv {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+@media all and (min-width: 321px) and (max-width: 768px) {
+  .mainDiv {
+    width: 60%;
+    text-align: left;
     justify-content: center;
     align-items: center;
-    margin: 0 5%;
+    font-family: "Inter";
+    margin: 2rem auto;
   }
   .form1 > div {
     font-family: "Inter";
-    width: 65%;
+    width: 98%;
     margin: 0 auto;
-  }
-  .forgotPasswordDiv {
-    color: #654de4;
-    display: block;
-    padding-bottom: 2.5%;
-    text-align: center;
-    margin: auto;
-  }
-  .forgotPasswordPTag {
-    margin: auto;
-  }
-  .newUserSignupLinkDiv {
-    margin: 2% auto;
-    text-align: center;
-    font-size: 13px;
-  }
-  .newUserSignupLinkDiv > p {
-    margin: 2% auto;
-  }
-  .signupLink {
-    color: #654de4;
-    font-size: 16px;
-  }
-  .googleLoginDiv{
-    width: 59%;
-    margin: 0 auto;
-  }
-  .googleLoginDiv > button {
-    width: 100%;
-    background-color: white;
-    border: 1.5px solid whitesmoke;
-    border-radius: 5px;
-  }
-  .googleLoginDiv > button > div {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    text-justify: auto;
-    padding: 5px;
-  }
-  .googleLoginDiv > button > div > img {
-    width: 8%;
-    margin: auto;
-  }
-  .googleLoginDiv > button > div > p {
-    font-size: 16px;
-    margin: auto;
-  }
-  .googleLoginDiv:hover{
-    background-color: whitesmoke;
-  }
-  .googleLoginDiv>button:hover{
-    background-color: whitesmoke;
-  }
-  #btn {
-    width: 100%;
-    background-color: #654de4;
-    color: #fff;
-    font: "Inter";
   }
   #urlLabel {
-    margin-left: 17%;
+    margin-left: 0%;
   }
-  .optSpan {
-    color: grey;
+  .googleLoginDiv {
+    width: 80%;
+    margin: 0 auto;
   }
-  
-  @media all and (max-width: 320px) {
-    .mainDiv {
-      width: 80%;
-      text-align: left;
-      justify-content: center;
-      align-items: center;
-      font-family: "Inter";
-      margin: 2rem auto;
-    }
-    .form1 > div {
-      font-family: "Inter";
-      width: 98%;
-      margin: 0 auto;
-    }
-    #urlLabel {
-      margin-left: 6%;
-    }
-    .googleLoginDiv{
-      width: 80%;
-      margin: 0 auto;
-    }
-  }
-  @media all and (min-width: 321px) and (max-width: 768px) {
-    .mainDiv {
-      width: 60%;
-      text-align: left;
-      justify-content: center;
-      align-items: center;
-      font-family: "Inter";
-      margin: 2rem auto;
-    }
-    .form1 > div {
-      font-family: "Inter";
-      width: 98%;
-      margin: 0 auto;
-    }
-    #urlLabel {
-      margin-left: 0%;
-    }
-    .googleLoginDiv{
-      width: 80%;
-      margin: 0 auto;
-    }
-  }
-  
+}

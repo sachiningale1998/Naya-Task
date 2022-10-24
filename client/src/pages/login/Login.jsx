@@ -1,59 +1,56 @@
 import React, { useState } from "react";
 import styles from "./login.module.css";
 import googleLogo from "../../collections/images/GoogleLogo.jpg";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
 import { useEffect } from "react";
 
-
 const Login = () => {
-
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-   //google login profile
-   const [profile, setProfile] = useState([]);
+  //google login profile
+  const [profile, setProfile] = useState([]);
 
-   const clientId =
-     "694320822890-5esppm1osmvbjucjd0g1cplthc9euqa1.apps.googleusercontent.com";
- 
+  const clientId =
+    "694320822890-5esppm1osmvbjucjd0g1cplthc9euqa1.apps.googleusercontent.com";
 
   async function handleSubmit(e) {
     e.preventDefault();
-    try{
-      let response = await fetch("https://sketchserver.herokuapp.com/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password
-        }),
-      });
-  
+    try {
+      let response = await fetch(
+        "https://sketchserver.herokuapp.com/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
+
       const data = await response.json();
-  
+
       if (data.user) {
-        let token = data.user
+        let token = data.user;
         localStorage.setItem("token", token);
-        
+
         alert("Login successful");
         setEmail("");
         setPassword("");
-        navigate("/drawboard")
+        navigate("/drawboard");
       } else {
         alert("Please check email and password");
       }
-    }catch(e){
-      console.log('e: ', e);
-
+    } catch (e) {
+      console.log("e: ", e);
     }
-    
   }
-  
 
   useEffect(() => {
     const initClient = () => {
@@ -76,15 +73,18 @@ const Login = () => {
   };
 
   const logInWithGoogle = async (profile) => {
-     try{
-      let response = await fetch("https://sketchserver.herokuapp.com/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...profile }),
-      });
-  
+    try {
+      let response = await fetch(
+        "https://sketchserver.herokuapp.com/auth/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...profile }),
+        }
+      );
+
       let data = await response.json();
       if (data.status === "error") {
         alreadyUsed(profile);
@@ -93,40 +93,38 @@ const Login = () => {
         alert("login successful");
         navigate("/drawboard");
       }
-     }catch(e){
-      console.log('e: ', e);
+    } catch (e) {
+      console.log("e: ", e);
+    }
+  };
 
-     }
-   };
- 
-
-  
   async function alreadyUsed(profile) {
     let email = profile.email;
-    try{
-      let response = await fetch("https://sketchserver.herokuapp.com/auth/googlelogin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
+    try {
+      let response = await fetch(
+        "https://sketchserver.herokuapp.com/auth/googlelogin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (data.user) {
-      localStorage.setItem("token", data.user);
-       alert("Login successful");
-      getInfo(email);
-     } else {
-       alert("Please check email and password");
-     }
-     setEmail("");
-    setPassword("");
-
-    }catch(e){
-      console.log('e: ', e);
-
+      if (data.user) {
+        localStorage.setItem("token", data.user);
+        alert("Login successful");
+        getInfo(email);
+      } else {
+        alert("Please check email and password");
+      }
+      setEmail("");
+      setPassword("");
+    } catch (e) {
+      console.log("e: ", e);
     }
   }
 
@@ -138,12 +136,12 @@ const Login = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email
+          email,
         }),
       });
       let data = await resp.json();
       data = data.user;
-     navigate("/drawboard")
+      navigate("/drawboard");
     } catch (err) {
       console.log("errInGetInfo: ", err);
     }
@@ -151,15 +149,15 @@ const Login = () => {
 
   return (
     <div className={styles.parentDiv}>
-      <div >
+      <div>
         <h3 style={{ color: "#654de4" }}>Log In to continue</h3>
       </div>
       <div className={styles.mainDiv}>
         <form onSubmit={handleSubmit} className={styles.form1}>
           <div className="mb-3">
             <input
-             value={email}
-             onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               className="form-control"
               placeholder="Email"
@@ -169,8 +167,8 @@ const Login = () => {
           </div>
           <div className="mb-3">
             <input
-             value={password}
-             onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
               className="form-control"
               placeholder="Password"
@@ -191,30 +189,34 @@ const Login = () => {
           <div className={styles.newUserSignupLinkDiv}>
             <p>
               <span>Don't have an account?</span>{" "}
-              <span onClick={()=> navigate("/signup")} className={styles.signupLink}>Sign up</span>
+              <span
+                onClick={() => navigate("/signup")}
+                className={styles.signupLink}
+              >
+                Sign up
+              </span>
             </p>
           </div>
           <div className={styles.newUserSignupLinkDiv}>
             <p>Or</p>
           </div>
-          
         </form>
         <div className={styles.googleLoginDiv}>
-            {/* <button>
+          {/* <button>
               <div>
                 <img src={googleLogo} alt="gLogo" />
                 <p>Log in with Google</p>
               </div>
             </button> */}
-            <GoogleLogin
-                buttonText="Sign in with Google"
-                clientId={clientId}
-                onSuccess={onSuccess}
-                onFailure={onFailure}
-                cookiePolicy={"single_host_origin"}
-                isSignedIn={true}
-              />
-          </div>
+          <GoogleLogin
+            buttonText="Sign in with Google"
+            clientId={clientId}
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy={"single_host_origin"}
+            isSignedIn={true}
+          />
+        </div>
       </div>
     </div>
   );

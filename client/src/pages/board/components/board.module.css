@@ -4,83 +4,83 @@
   margin: auto;
   background-color: whitesmoke;
 }
-.sketchDiv{
-    display: flex;
-    gap: 10px;
-    justify-content:center;
+.sketchDiv {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
-.saveBtn{
-    margin-top: 540px;
-    margin-right: 100px;
-    border: none;
-    background-color:#654de4;
-    color: aliceblue;
-    padding:5px 15px;
-    border-radius:5px;
+.saveBtn {
+  margin-top: 540px;
+  margin-right: 100px;
+  border: none;
+  background-color: #654de4;
+  color: aliceblue;
+  padding: 5px 15px;
+  border-radius: 5px;
 }
-.newSketchBtn{
-    border: none;
-    background-color:#654de4;
-    color: aliceblue;
-    padding:5px 15px;
-    border-radius:5px;
+.newSketchBtn {
+  border: none;
+  background-color: #654de4;
+  color: aliceblue;
+  padding: 5px 15px;
+  border-radius: 5px;
 }
-.users{
-    margin-top: 25px;
-    border: 1px solid rgb(212, 211, 211);
-    width: 230px;
-    height: 160px;
-    background-color:#fafafa;
-    position: fixed;
-    right: 7%;
-    z-index: 1;
+.users {
+  margin-top: 25px;
+  border: 1px solid rgb(212, 211, 211);
+  width: 230px;
+  height: 160px;
+  background-color: #fafafa;
+  position: fixed;
+  right: 7%;
+  z-index: 1;
 }
-.usersHeadingDiv{
-    display: flex;
-    gap: 60%;
-    margin: auto;
+.usersHeadingDiv {
+  display: flex;
+  gap: 60%;
+  margin: auto;
 }
-.usersHeadingDiv>h6{
-    margin-left: 15px;
+.usersHeadingDiv > h6 {
+  margin-left: 15px;
 }
-.usersHeadingDiv>i{
-    font-size: 13px;
-    margin-top:5px;
+.usersHeadingDiv > i {
+  font-size: 13px;
+  margin-top: 5px;
 }
-.sketches{
-    margin-top: 225px;
-    border: 1px solid rgb(212, 211, 211);
-    width: 230px;
-    height: 160px;
-    background-color:#fafafa;
-    position: fixed;
-    right: 7%;
-    z-index: 1;
+.sketches {
+  margin-top: 225px;
+  border: 1px solid rgb(212, 211, 211);
+  width: 230px;
+  height: 160px;
+  background-color: #fafafa;
+  position: fixed;
+  right: 7%;
+  z-index: 1;
 }
-.sketchesHeadingDiv{
-    display: flex;
-    gap: 60%;
-    margin: auto;
+.sketchesHeadingDiv {
+  display: flex;
+  gap: 60%;
+  margin: auto;
 }
-.sketchesHeadingDiv>h6{
-    margin-left: 15px;
+.sketchesHeadingDiv > h6 {
+  margin-left: 15px;
 }
-.sketchesHeadingDiv>i{
-    font-size: 13px;
-    margin-top:5px;
+.sketchesHeadingDiv > i {
+  font-size: 13px;
+  margin-top: 5px;
 }
-.addNewSketch{
-    display: flex;
-    justify-content: space-around;
+.addNewSketch {
+  display: flex;
+  justify-content: space-around;
 }
-.addNewSketch>i{
-    margin-top: 5px ;
+.addNewSketch > i {
+  margin-top: 5px;
 }
-.addNewSketchDiv{
-    width: 250px;
-    position: fixed;
-    right: 6%;
-    top: 70%;
-    background-color:white;
-    z-index: 2;
+.addNewSketchDiv {
+  width: 250px;
+  position: fixed;
+  right: 6%;
+  top: 70%;
+  background-color: white;
+  z-index: 2;
 }
