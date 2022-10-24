@@ -15,7 +15,7 @@ const Login = () => {
   const [profile, setProfile] = useState([]);
 
   const clientId =
-    "694320822890-5esppm1osmvbjucjd0g1cplthc9euqa1.apps.googleusercontent.com";
+    "61648770415-3shsba6rdfahjndgvul5kl9095p4vjik.apps.googleusercontent.com";
 
   async function handleSubmit(e) {
     e.preventDefault();
