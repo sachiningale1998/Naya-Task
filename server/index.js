@@ -24,4 +24,5 @@ app.listen(PORT, async()=>{
     }catch(e){
         console.log("error connecting to nayadrawboard database",e);
     }
+    console.log(`listening on http://127.0.0.1:${PORT}/`)
 })
