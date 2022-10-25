@@ -24,7 +24,7 @@ const Register = () => {
     event.preventDefault();
     try {
       let response = await fetch(
-        "http://127.0.0.1:5001/auth/signup",
+        "https://sketchserver.herokuapp.com/auth/signup",
         {
           method: "POST",
           headers: {
